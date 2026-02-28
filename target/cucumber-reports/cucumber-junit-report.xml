@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="55.035" tests="12" skipped="0" failures="0" errors="0">
+<testcase classname="Login Functionality" name="Successful login with valid credentials" time="14.564">
+<system-out><![CDATA[
+Given the user is on the login page.........................................passed
+When the user enters username "standard_user" and password "secret_sauce"...passed
+And the user clicks the login button........................................passed
+Then the user should be redirected to the inventory page....................passed
+And the inventory page title should be "Products"...........................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Login with invalid credentials" time="4.836">
+<system-out><![CDATA[
+Given the user is on the login page.........................................passed
+When the user enters username "invalid_user" and password "wrong_password"..passed
+And the user clicks the login button........................................passed
+Then an error message should be displayed...................................passed
+And the error message should contain "Username and password do not match"...passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Login with empty credentials" time="4.914">
+<system-out><![CDATA[
+Given the user is on the login page.........................................passed
+When the user enters username "" and password ""............................passed
+And the user clicks the login button........................................passed
+Then an error message should be displayed...................................passed
+And the error message should contain "Username is required".................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Login with multiple valid users - Example #1.1" time="5.243">
+<system-out><![CDATA[
+Given the user is on the login page.........................................passed
+When the user enters username "standard_user" and password "secret_sauce"...passed
+And the user clicks the login button........................................passed
+Then the user should be redirected to the inventory page....................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Login with multiple valid users - Example #1.2" time="4.749">
+<system-out><![CDATA[
+Given the user is on the login page.........................................passed
+When the user enters username "problem_user" and password "secret_sauce"....passed
+And the user clicks the login button........................................passed
+Then the user should be redirected to the inventory page....................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login Functionality" name="Login with multiple valid users - Example #1.3" time="9.889">
+<system-out><![CDATA[
+Given the user is on the login page.........................................passed
+When the user enters username "performance_glitch_user" and password "secret_sauce".passed
+And the user clicks the login button........................................passed
+Then the user should be redirected to the inventory page....................passed
+]]></system-out>
+</testcase>
+<testcase classname="User API Operations" name="Get list of users" time="6.066">
+<system-out><![CDATA[
+When I send a GET request to "/users" with parameter "page" as "1"..........passed
+Then the response status code should be 200.................................passed
+And the response should contain "data"......................................passed
+And the response "page" value should be "1".................................passed
+]]></system-out>
+</testcase>
+<testcase classname="User API Operations" name="Get a single user" time="0.728">
+<system-out><![CDATA[
+When I send a GET request to "/users/2".....................................passed
+Then the response status code should be 200.................................passed
+And the response "data.id" value should be "2"..............................passed
+And the response "data.email" should not be empty...........................passed
+]]></system-out>
+</testcase>
+<testcase classname="User API Operations" name="Create a new user" time="1.619">
+<system-out><![CDATA[
+Given I have the following user data:.......................................passed
+When I send a POST request to "/users" with the user data...................passed
+Then the response status code should be 201.................................passed
+And the response should contain "id"........................................passed
+And the response "name" value should be "Janet Doe".........................passed
+]]></system-out>
+</testcase>
+<testcase classname="User API Operations" name="Update a user" time="0.622">
+<system-out><![CDATA[
+Given I have the following user data:.......................................passed
+When I send a PUT request to "/users/2" with the user data..................passed
+Then the response status code should be 200.................................passed
+And the response "name" value should be "John Updated"......................passed
+]]></system-out>
+</testcase>
+<testcase classname="User API Operations" name="Delete a user" time="0.801">
+<system-out><![CDATA[
+When I send a DELETE request to "/users/2"..................................passed
+Then the response status code should be 204.................................passed
+]]></system-out>
+</testcase>
+<testcase classname="User API Operations" name="Get non-existent user" time="0.531">
+<system-out><![CDATA[
+When I send a GET request to "/users/999"...................................passed
+Then the response status code should be 404.................................passed
+]]></system-out>
+</testcase>
+</testsuite>
